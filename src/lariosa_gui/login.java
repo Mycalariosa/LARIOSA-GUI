@@ -1,9 +1,19 @@
 
 package lariosa_gui;
 
+import admin.admin;
+import config.config;
 import java.awt.event.ActionListener;
 import javax.swing.Action;
-
+import dashboard.dashboard;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
 public class login extends javax.swing.JFrame {
 
@@ -13,13 +23,28 @@ public class login extends javax.swing.JFrame {
     public login() {
         initComponents();
     }
+ public static boolean loginAcc(String username, String password) {
+            config connect = new config();
+            String query = "SELECT * FROM user WHERE username = ? AND password = ?";
 
+            try (PreparedStatement pstmt = connect.getConnection().prepareStatement(query)) {
+                pstmt.setString(1, username);
+                pstmt.setString(2, password);
+                ResultSet resultSet = pstmt.executeQuery();
+
+            return resultSet.next(); // Return true if a match is found
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return false;
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel2 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
         username = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -38,15 +63,23 @@ public class login extends javax.swing.JFrame {
 
         jPanel5.setBackground(new java.awt.Color(51, 51, 51));
 
+        jLabel4.setText("admin");
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 320, Short.MAX_VALUE)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel4)
+                .addContainerGap(282, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 35, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel4)
+                .addContainerGap())
         );
 
         jPanel2.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, -1));
@@ -82,8 +115,8 @@ public class login extends javax.swing.JFrame {
         jLabel2.setText("LOG IN");
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(134, 76, -1, -1));
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/19772c27-4c16-45c8-9810-025f0f3a8e9d (1) (3).jpeg"))); // NOI18N
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 104, -1, -1));
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/log.png"))); // NOI18N
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, -1, -1));
 
         jLabel7.setText("don't have an account? ");
         jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(105, 420, -1, -1));
@@ -112,7 +145,28 @@ public class login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginbuttonActionPerformed
-        
+ String user = username.getText();
+    String pass = new String(jPasswordField1.getPassword());
+
+    if (user.isEmpty() || pass.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Please enter username and password.", "Login Failed", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    if (user.equals("Admin") && pass.equals("Admin1234")) {
+        JOptionPane.showMessageDialog(this, "Admin Login Successful! Redirecting to Admin Dashboard...", "Success", JOptionPane.INFORMATION_MESSAGE);
+        this.dispose(); // Close the login window
+        new admin().setVisible(true); // Open the admin dashboard
+        return; // Stop further execution
+    }
+
+    if (!loginAcc(user, pass)) {
+        JOptionPane.showMessageDialog(this, "Invalid username or password.", "Login Failed", JOptionPane.ERROR_MESSAGE);
+    } else {
+        JOptionPane.showMessageDialog(this, "Login Successful! Redirecting to Dashboard...", "Success", JOptionPane.INFORMATION_MESSAGE);
+        this.dispose(); // Close the login window
+        new dashboard().setVisible(true); // Open the regular dashboard
+    }
     }//GEN-LAST:event_loginbuttonActionPerformed
 
     private void usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameActionPerformed
@@ -126,9 +180,10 @@ public class login extends javax.swing.JFrame {
     private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jPasswordField1ActionPerformed
-
+  
     private void loginbuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginbuttonMouseClicked
-        
+  
+     
     }//GEN-LAST:event_loginbuttonMouseClicked
 
     /**
@@ -171,6 +226,7 @@ public class login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel2;

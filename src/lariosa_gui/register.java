@@ -203,7 +203,7 @@ public class register extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel4.setText("REGISTRATION");
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/19772c27-4c16-45c8-9810-025f0f3a8e9d (1) (3).jpeg"))); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/log.png"))); // NOI18N
 
         lname.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -242,6 +242,11 @@ public class register extends javax.swing.JFrame {
         loginhere.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         loginhere.setForeground(new java.awt.Color(0, 102, 153));
         loginhere.setText("Log in here");
+        loginhere.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                loginhereMouseClicked(evt);
+            }
+        });
 
         pass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -335,7 +340,7 @@ public class register extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(loginhere))
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, 520));
@@ -345,9 +350,7 @@ public class register extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       login log = new login ();
-        this.dispose();
-        log.setVisible(true);
+       
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void fname1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fname1ActionPerformed
@@ -477,6 +480,12 @@ public class register extends javax.swing.JFrame {
     private void passActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_passActionPerformed
+
+    private void loginhereMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginhereMouseClicked
+        login log = new login ();
+        this.dispose();
+        log.setVisible(true);
+    }//GEN-LAST:event_loginhereMouseClicked
 
     /**
      * @param args the command line arguments

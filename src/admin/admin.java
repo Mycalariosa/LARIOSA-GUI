@@ -30,45 +30,48 @@ public class admin extends javax.swing.JFrame {
         
     }
 
-    private void loadUsers() {
+  private void loadUsers() {
+    if (admintable == null) { // Ensure admintable is initialized
+        System.err.println("admintable is not initialized!");
+        return;
+    }
 
-        
-if (admintable == null) { // Check if admintable is initialized
-            System.err.println("admintable is not initialized!");
+    // Create table model with column names
+    DefaultTableModel model = new DefaultTableModel();
+    model.addColumn("User ID");
+    model.addColumn("First Name");
+    model.addColumn("Last Name");
+    model.addColumn("Contact Number");
+    model.addColumn("Email");
+    model.addColumn("Username");
+
+    String query = "SELECT u_id, fname, lname, contact, email, username FROM user"; // Correct query
+
+    try (ResultSet rs = connect.getData(query)) {
+        if (rs == null) {
+            System.err.println("Error: ResultSet is null. Check database connection.");
             return;
         }
 
-        DefaultTableModel model = new DefaultTableModel();
-        model.addColumn("User ID");
-        model.addColumn("First Name");
-        model.addColumn("Last Name");
-        model.addColumn("Contact Number");
-        model.addColumn("Email");
-        model.addColumn("Username");
-        model.addColumn("Status");
-
-        String query = "SELECT u_id, fname, lname, contact, email, username, status FROM user";
-
-        try (ResultSet rs = connect.getData(query)) {
-            if (rs != null) {
-                while (rs.next()) {
-                    model.addRow(new Object[]{
-                        rs.getInt("u_id"),
-                        rs.getString("fname"),
-                        rs.getString("lname"),
-                        rs.getString("contact"),
-                        rs.getString("email"),
-                        rs.getString("username"),
-                        rs.getString("status")
-                    });
-                }
-            }
-            admintable.setModel(model); // Ensure admintable is initialized before this line
-            model.fireTableDataChanged(); // Refresh table
-        } catch (SQLException ex) {
-            System.err.println("Error loading users: " + ex.getMessage());
+        while (rs.next()) {
+            model.addRow(new Object[]{
+                rs.getInt("u_id"),
+                rs.getString("fname"),
+                rs.getString("lname"),
+                rs.getString("contact"),
+                rs.getString("email"),
+                rs.getString("username")
+            });
         }
+
+        admintable.setModel(model); // Set table model with loaded data
+        model.fireTableDataChanged(); // Ensure table refreshes
+
+    } catch (SQLException ex) {
+        System.err.println("Error loading users: " + ex.getMessage());
     }
+}
+
 
 
     @SuppressWarnings("unchecked")
@@ -78,6 +81,10 @@ if (admintable == null) { // Check if admintable is initialized
         background = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         admintab = new javax.swing.JTable();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -95,10 +102,21 @@ if (admintable == null) { // Check if admintable is initialized
             }
         ));
         admintab.setColumnSelectionAllowed(true);
+        admintab.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(admintab);
         admintab.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
-        background.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 60, 560, 330));
+        background.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 90, 560, 290));
+
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 36)); // NOI18N
+        jLabel2.setText("WELCOME BACK ADMIN");
+        jPanel1.add(jLabel2);
+
+        background.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 720, 70));
+        background.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 150, 290));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/back.png"))); // NOI18N
+        background.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
@@ -144,6 +162,10 @@ if (admintable == null) { // Check if admintable is initialized
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable admintab;
     private javax.swing.JPanel background;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
