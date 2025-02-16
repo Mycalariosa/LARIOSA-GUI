@@ -66,6 +66,11 @@ public class login extends javax.swing.JFrame {
 
         loginbutton.setBackground(new java.awt.Color(0, 102, 153));
         loginbutton.setText("LOG IN ");
+        loginbutton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                loginbuttonMouseClicked(evt);
+            }
+        });
         loginbutton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 loginbuttonActionPerformed(evt);
@@ -121,6 +126,10 @@ public class login extends javax.swing.JFrame {
     private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jPasswordField1ActionPerformed
+
+    private void loginbuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginbuttonMouseClicked
+        
+    }//GEN-LAST:event_loginbuttonMouseClicked
 
     /**
      * @param args the command line arguments

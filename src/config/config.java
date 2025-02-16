@@ -1,8 +1,6 @@
 
 package config;
 
-import java.sql.DriverManager;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -21,24 +19,38 @@ public class config {
                     System.out.println("Can't connect to database: "+ex.getMessage());
             }
         }
-    
-   
-        public int insertData(String sql){
-            int result;
-            try{
-                PreparedStatement pst = connect.prepareStatement(sql);
-                pst.executeUpdate();
-                System.out.println("Inserted Successfully!");
-                pst.close();
-                result =1;
-            }catch(SQLException ex){
-                System.out.println("Connection Error: "+ex);
-                result =0;
+     public Connection getConnection() {
+                return connect;
             }
-            return result;
-        }
 
-         public Connection getConnection(){
-        return connect;
-    }
+   
+      public int insertData(String sql) {
+                int result = 0;
+                try (PreparedStatement pst = connect.prepareStatement(sql)) {
+                    pst.executeUpdate();
+                    System.out.println("Inserted successfully!");
+                    result = 1;
+                } catch (SQLException ex) {
+                    System.err.println("Insert error: " + ex.getMessage());
+                }
+                return result;
+            }
+
+            // Function to retrieve data
+            public ResultSet getData(String sql) throws SQLException {
+                Statement stmt = connect.createStatement();
+                return stmt.executeQuery(sql);
+            }
+
+            // Method to close the connection
+            public void closeConnection() {
+                try {
+                    if (connect != null && !connect.isClosed()) {
+                        connect.close();
+                        System.out.println("Database connection closed.");
+                    }
+                } catch (SQLException ex) {
+                    System.err.println("Error closing connection: " + ex.getMessage());
+                }
+            }
 }

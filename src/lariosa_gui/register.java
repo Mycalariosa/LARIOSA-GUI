@@ -7,6 +7,9 @@ import javafx.scene.control.Alert;
 import javax.swing.JOptionPane;
 import config.config;
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import static javax.management.remote.JMXConnectorFactory.connect;
 
 public class register extends javax.swing.JFrame {
@@ -23,8 +26,19 @@ public class register extends javax.swing.JFrame {
     // Helper method to check if username is already taken
     // This would typically involve checking against a database
     private boolean isUsernameTaken(String username) {
-        // TODO: Implement actual username check against database or user store
-        // For now, return false as a placeholder
+        config connect = new config();
+        
+        String sql = "SELECT COUNT(*) FROM user WHERE username = ?"; // Corrected SQL
+        try (PreparedStatement pst = connect.getConnection().prepareStatement(sql)) {
+            pst.setString(1, username);
+            try (ResultSet rs = pst.executeQuery()) { // Use try-with-resources for ResultSet
+                if (rs.next()) {
+                    return rs.getInt(1) > 0;
+                }
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(); // Handle the exception appropriately (e.g., log it)
+        }
         return false;
     }
     private boolean isAllFieldsEmpty() {
@@ -61,14 +75,14 @@ public class register extends javax.swing.JFrame {
         lname = new javax.swing.JTextField();
         contactff = new javax.swing.JTextField();
         email = new javax.swing.JTextField();
-        pass = new javax.swing.JTextField();
         userff = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
+        loginhere = new javax.swing.JLabel();
+        pass = new javax.swing.JPasswordField();
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -209,12 +223,6 @@ public class register extends javax.swing.JFrame {
             }
         });
 
-        pass.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passActionPerformed(evt);
-            }
-        });
-
         userff.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 userffActionPerformed(evt);
@@ -231,9 +239,15 @@ public class register extends javax.swing.JFrame {
 
         jLabel8.setText("Already have an account ?");
 
-        jLabel12.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(0, 102, 153));
-        jLabel12.setText("Log in here");
+        loginhere.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        loginhere.setForeground(new java.awt.Color(0, 102, 153));
+        loginhere.setText("Log in here");
+
+        pass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -269,15 +283,15 @@ public class register extends javax.swing.JFrame {
                                     .addComponent(contactff, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(email, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lname)
-                                    .addComponent(pass)
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                                         .addGap(15, 15, 15)
-                                        .addComponent(register, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                        .addComponent(register, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(pass)))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(65, 65, 65)
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel12)))
+                        .addComponent(loginhere)))
                 .addContainerGap(33, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -312,14 +326,16 @@ public class register extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pass, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(pass, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(register, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel12))
-                .addContainerGap(50, Short.MAX_VALUE))
+                    .addComponent(loginhere))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, 520));
@@ -340,7 +356,7 @@ public class register extends javax.swing.JFrame {
 
     private void registerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerActionPerformed
     boolean isValid = true;
-
+    config connect = new config();
     // Getting user inputs
     String firstname = fname1.getText().trim(); 
     String lastname = lname.getText().trim();
@@ -411,9 +427,9 @@ public class register extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Registration Successful!", "Success", JOptionPane.INFORMATION_MESSAGE);
 
         // Prepare the SQL query for inserting into the database
-        String sql = "INSERT INTO user (fname, lname,email, contact, username, password, ) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO user (fname, lname,email, contact, username, password ) VALUES (?, ?, ?, ?, ?, ?)";
         
-        try (PreparedStatement pst = db.getConnection().prepareStatement(sql)) {
+        try (PreparedStatement pst = connect.getConnection().prepareStatement(sql)) {
             // Set the values for the prepared statement
             pst.setString(1, firstname);
             pst.setString(2, lastname);
@@ -424,8 +440,8 @@ public class register extends javax.swing.JFrame {
              // Assuming the role is "user", you can change this logic as needed
             
             // Execute the update to insert the data into the database
-            pst.executeQuery();
-
+            pst.executeUpdate();
+            JOptionPane.showMessageDialog(this, "Registration Successful!", "Success", JOptionPane.INFORMATION_MESSAGE);
             // Clear the fields after successful registration
             fname1.setText("");
             lname.setText("");
@@ -435,7 +451,7 @@ public class register extends javax.swing.JFrame {
             pass.setText("");
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this, "Database error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            Logger.getLogger(register.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -454,13 +470,13 @@ public class register extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_emailActionPerformed
 
-    private void passActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_passActionPerformed
-
     private void userffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userffActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_userffActionPerformed
+
+    private void passActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_passActionPerformed
 
     /**
      * @param args the command line arguments
@@ -506,7 +522,6 @@ public class register extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -521,7 +536,8 @@ public class register extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JTextField lname;
-    private javax.swing.JTextField pass;
+    private javax.swing.JLabel loginhere;
+    private javax.swing.JPasswordField pass;
     private javax.swing.JButton register;
     private javax.swing.JTextField userff;
     // End of variables declaration//GEN-END:variables
