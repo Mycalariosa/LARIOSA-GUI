@@ -19,41 +19,38 @@ import javax.swing.table.DefaultTableModel;
  */
 public class admin extends javax.swing.JFrame {
 
-    private JTable admintable;
-    config connect = new config();
-
+   config connect = new config();
    
 
     public admin() {
-         loadUsers();
+         
          initComponents();
+         loadUsers();
         
     }
 
   private void loadUsers() {
-    if (admintable == null) { // Ensure admintable is initialized
-        System.err.println("admintable is not initialized!");
-        return;
-    }
+     DefaultTableModel model = (DefaultTableModel) admintab.getModel();
+       model.addColumn("User ID");
+        model.addColumn("First Name");
+        model.addColumn("Last Name");
+        model.addColumn("Contact Number");
+        model.addColumn("Email");
+        model.addColumn("Username");
+//        model.addColumn("Role");
+//        model.addColumn("Status");  
 
-    // Create table model with column names
-    DefaultTableModel model = new DefaultTableModel();
-    model.addColumn("User ID");
-    model.addColumn("First Name");
-    model.addColumn("Last Name");
-    model.addColumn("Contact Number");
-    model.addColumn("Email");
-    model.addColumn("Username");
-
-    String query = "SELECT u_id, fname, lname, contact, email, username FROM user"; // Correct query
-
+    String query = "SELECT u_id, fname, lname, contact, email, username FROM user";
+   
     try (ResultSet rs = connect.getData(query)) {
         if (rs == null) {
             System.err.println("Error: ResultSet is null. Check database connection.");
             return;
         }
 
+        boolean hasData = false;
         while (rs.next()) {
+            hasData = true;
             model.addRow(new Object[]{
                 rs.getInt("u_id"),
                 rs.getString("fname"),
@@ -64,12 +61,16 @@ public class admin extends javax.swing.JFrame {
             });
         }
 
-        admintable.setModel(model); // Set table model with loaded data
-        model.fireTableDataChanged(); // Ensure table refreshes
+        if (!hasData) {
+            System.err.println("No data found in the database.");
+        }
+
+        model.fireTableDataChanged();
 
     } catch (SQLException ex) {
         System.err.println("Error loading users: " + ex.getMessage());
     }
+
 }
 
 
@@ -78,13 +79,24 @@ public class admin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel12 = new javax.swing.JPanel();
         background = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         admintab = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
+        jPanel6 = new javax.swing.JPanel();
+        jPanel7 = new javax.swing.JPanel();
+        jPanel8 = new javax.swing.JPanel();
+        jPanel9 = new javax.swing.JPanel();
+        jPanel10 = new javax.swing.JPanel();
+        jPanel11 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+
+        jPanel12.setBackground(new java.awt.Color(102, 102, 102));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -106,13 +118,66 @@ public class admin extends javax.swing.JFrame {
         jScrollPane1.setViewportView(admintab);
         admintab.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
-        background.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 90, 560, 290));
+        background.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 120, 610, 260));
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 36)); // NOI18N
         jLabel2.setText("WELCOME BACK ADMIN");
+        jLabel2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jLabel2.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
         jPanel1.add(jLabel2);
 
-        background.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 720, 70));
+        background.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 770, 70));
+
+        jPanel3.setBackground(new java.awt.Color(102, 102, 102));
+
+        jPanel5.setBackground(new java.awt.Color(102, 102, 102));
+
+        jPanel6.setBackground(new java.awt.Color(102, 102, 102));
+
+        jPanel7.setBackground(new java.awt.Color(102, 102, 102));
+
+        jPanel8.setBackground(new java.awt.Color(102, 102, 102));
+
+        jPanel9.setBackground(new java.awt.Color(102, 102, 102));
+
+        jPanel10.setBackground(new java.awt.Color(102, 102, 102));
+
+        jPanel11.setBackground(new java.awt.Color(102, 102, 102));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(8, 8, 8)
+                .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
         background.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 150, 290));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/back.png"))); // NOI18N
@@ -165,7 +230,16 @@ public class admin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
