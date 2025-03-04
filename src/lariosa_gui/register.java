@@ -158,6 +158,7 @@ public class register extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel5.setBackground(new java.awt.Color(51, 51, 51));
 
@@ -181,15 +182,20 @@ public class register extends javax.swing.JFrame {
                 .addComponent(jLabel7))
         );
 
+        jPanel2.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, -1));
+
         fname1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 fname1ActionPerformed(evt);
             }
         });
+        jPanel2.add(fname1, new org.netbeans.lib.awtextra.AbsoluteConstraints(81, 166, 206, 30));
 
         jLabel1.setText("firstname");
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 182, -1, -1));
 
         jLabel3.setText("lastname");
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 213, 60, 19));
 
         register.setBackground(new java.awt.Color(0, 102, 153));
         register.setText("REGISTER");
@@ -199,45 +205,57 @@ public class register extends javax.swing.JFrame {
                 registerActionPerformed(evt);
             }
         });
+        jPanel2.add(register, new org.netbeans.lib.awtextra.AbsoluteConstraints(97, 396, 139, 36));
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel4.setText("REGISTRATION");
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(118, 143, -1, -1));
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/log.png"))); // NOI18N
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(129, 46, -1, -1));
 
         lname.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lnameActionPerformed(evt);
             }
         });
+        jPanel2.add(lname, new org.netbeans.lib.awtextra.AbsoluteConstraints(82, 202, 205, 30));
 
         contactff.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 contactffActionPerformed(evt);
             }
         });
+        jPanel2.add(contactff, new org.netbeans.lib.awtextra.AbsoluteConstraints(82, 274, 205, 30));
 
         email.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 emailActionPerformed(evt);
             }
         });
+        jPanel2.add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(82, 238, 205, 30));
 
         userff.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 userffActionPerformed(evt);
             }
         });
+        jPanel2.add(userff, new org.netbeans.lib.awtextra.AbsoluteConstraints(82, 310, 205, 30));
 
         jLabel5.setText("contact");
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 280, 60, 19));
 
         jLabel9.setText("email");
+        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 244, 60, 19));
 
         jLabel10.setText("password");
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 346, 60, 19));
 
         jLabel11.setText("username");
+        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 310, 60, 19));
 
         jLabel8.setText("Already have an account ?");
+        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 438, -1, 27));
 
         loginhere.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         loginhere.setForeground(new java.awt.Color(0, 102, 153));
@@ -247,101 +265,14 @@ public class register extends javax.swing.JFrame {
                 loginhereMouseClicked(evt);
             }
         });
+        jPanel2.add(loginhere, new org.netbeans.lib.awtextra.AbsoluteConstraints(203, 444, -1, -1));
 
         pass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 passActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel6))
-                .addGap(101, 101, 101))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(18, 18, 18)
-                                .addComponent(fname1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(userff, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
-                                    .addComponent(contactff, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(email, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lname)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                        .addGap(15, 15, 15)
-                                        .addComponent(register, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(pass)))))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(65, 65, 65)
-                        .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(loginhere)))
-                .addContainerGap(33, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(11, 11, 11)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(fname1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lname, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(contactff, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(userff, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(pass, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(register, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(loginhere))
-                .addContainerGap(55, Short.MAX_VALUE))
-        );
+        jPanel2.add(pass, new org.netbeans.lib.awtextra.AbsoluteConstraints(82, 347, 205, 31));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, 520));
 
@@ -359,104 +290,105 @@ public class register extends javax.swing.JFrame {
 
     private void registerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerActionPerformed
     boolean isValid = true;
-    config connect = new config();
-    // Getting user inputs
-    String firstname = fname1.getText().trim(); 
-    String lastname = lname.getText().trim();
-    String email1 = email.getText().trim();
-    String contact = contactff.getText().trim();
-    String username = userff.getText().trim();
-    String password = pass.getText().trim();
+config connect = new config();
 
-    // Validate if fields are empty
-    if (isAllFieldsEmpty()) {
-        JOptionPane.showMessageDialog(this, "Please fill out the registration form", "Empty Form", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
+// Getting user inputs
+String firstname = fname1.getText().trim();
+String lastname = lname.getText().trim();
+String email1 = email.getText().trim();
+String contact = contactff.getText().trim();
+String username = userff.getText().trim();
+String password = pass.getText().trim();
+String status = "Pending"; // Automatically set to Pending
+String role = "User";    // Automatically set to User
 
-    // Validate First Name
-    if (firstname.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "First Name cannot be empty", "Validation Error", JOptionPane.ERROR_MESSAGE);
-        isValid = false;
-    }
+// Validate if fields are empty
+if (isAllFieldsEmpty()) {
+    JOptionPane.showMessageDialog(this, "Please fill out the registration form", "Empty Form", JOptionPane.ERROR_MESSAGE);
+    return;
+}
 
-    // Validate Last Name
-    if (lastname.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Last Name cannot be empty", "Validation Error", JOptionPane.ERROR_MESSAGE);
-        isValid = false;
-    }
+// Validate First Name
+if (firstname.isEmpty()) {
+    JOptionPane.showMessageDialog(this, "First Name cannot be empty", "Validation Error", JOptionPane.ERROR_MESSAGE);
+    isValid = false;
+}
 
-    // Validate Email
-    if (email1.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Email cannot be empty", "Validation Error", JOptionPane.ERROR_MESSAGE);
-        isValid = false;
-    } else if (!isValidEmail(email1)) {
-        JOptionPane.showMessageDialog(this, "Invalid email format", "Validation Error", JOptionPane.ERROR_MESSAGE);
-        isValid = false;
-    }
+// Validate Last Name
+if (lastname.isEmpty()) {
+    JOptionPane.showMessageDialog(this, "Last Name cannot be empty", "Validation Error", JOptionPane.ERROR_MESSAGE);
+    isValid = false;
+}
 
-    // Validate Contact Number
-    if (contact.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Contact Number cannot be empty", "Validation Error", JOptionPane.ERROR_MESSAGE);
-        isValid = false;
-    } else if (!contact.matches("\\d+")) {
-        JOptionPane.showMessageDialog(this, "Contact Number must contain only numbers", "Validation Error", JOptionPane.ERROR_MESSAGE);
-        isValid = false;
-    }
+// Validate Email
+if (email1.isEmpty()) {
+    JOptionPane.showMessageDialog(this, "Email cannot be empty", "Validation Error", JOptionPane.ERROR_MESSAGE);
+    isValid = false;
+} else if (!isValidEmail(email1)) {
+    JOptionPane.showMessageDialog(this, "Invalid email format", "Validation Error", JOptionPane.ERROR_MESSAGE);
+    isValid = false;
+}
 
-    // Validate Username
-    if (username.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Username cannot be empty", "Validation Error", JOptionPane.ERROR_MESSAGE);
-        isValid = false;
-    } else if (isUsernameTaken(username)) {
-        JOptionPane.showMessageDialog(this, "Username is already taken", "Validation Error", JOptionPane.ERROR_MESSAGE);
-        isValid = false;
-    }
+// Validate Contact Number
+if (contact.isEmpty()) {
+    JOptionPane.showMessageDialog(this, "Contact Number cannot be empty", "Validation Error", JOptionPane.ERROR_MESSAGE);
+    isValid = false;
+} else if (!contact.matches("\\d+")) {
+    JOptionPane.showMessageDialog(this, "Contact Number must contain only numbers", "Validation Error", JOptionPane.ERROR_MESSAGE);
+    isValid = false;
+}
 
-    // Validate Password
-    if (password.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Password cannot be empty", "Validation Error", JOptionPane.ERROR_MESSAGE);
-        isValid = false;
-    } else if (password.length() < 8) {
-        JOptionPane.showMessageDialog(this, "Password must be at least 8 characters long", "Validation Error", JOptionPane.ERROR_MESSAGE);
-        isValid = false;
-    }
+// Validate Username
+if (username.isEmpty()) {
+    JOptionPane.showMessageDialog(this, "Username cannot be empty", "Validation Error", JOptionPane.ERROR_MESSAGE);
+    isValid = false;
+} else if (isUsernameTaken(username)) {
+    JOptionPane.showMessageDialog(this, "Username is already taken", "Validation Error", JOptionPane.ERROR_MESSAGE);
+    isValid = false;
+}
 
-    if (isValid) {
-        
+// Validate Password
+if (password.isEmpty()) {
+    JOptionPane.showMessageDialog(this, "Password cannot be empty", "Validation Error", JOptionPane.ERROR_MESSAGE);
+    isValid = false;
+} else if (password.length() < 8) {
+    JOptionPane.showMessageDialog(this, "Password must be at least 8 characters long", "Validation Error", JOptionPane.ERROR_MESSAGE);
+    isValid = false;
+}
 
-        
-        // Registration successful
+if (isValid) {
+    JOptionPane.showMessageDialog(this, "Registration Successful!", "Success", JOptionPane.INFORMATION_MESSAGE);
+    
+    // Prepare the SQL query
+    String sql = "INSERT INTO user (fname, lname, email, contact, username, password, status, role) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+
+    try (PreparedStatement pst = connect.getConnection().prepareStatement(sql)) {
+        // Set the values for the prepared statement
+        pst.setString(1, firstname);
+        pst.setString(2, lastname);
+        pst.setString(3, email1);
+        pst.setString(4, contact);
+        pst.setString(5, username);
+        pst.setString(6, password); // Make sure to hash the password if needed
+        pst.setString(7, status);
+        pst.setString(8, role);
+
+        // Execute the update
+        pst.executeUpdate();
         JOptionPane.showMessageDialog(this, "Registration Successful!", "Success", JOptionPane.INFORMATION_MESSAGE);
 
-        // Prepare the SQL query for inserting into the database
-        String sql = "INSERT INTO user (fname, lname,email, contact, username, password ) VALUES (?, ?, ?, ?, ?, ?)";
-        
-        try (PreparedStatement pst = connect.getConnection().prepareStatement(sql)) {
-            // Set the values for the prepared statement
-            pst.setString(1, firstname);
-            pst.setString(2, lastname);
-            pst.setString(3, email1);
-            pst.setString(4, contact);
-            pst.setString(5, username);
-            pst.setString(6, password); // Here, make sure you hash the password before saving
-             // Assuming the role is "user", you can change this logic as needed
-            
-            // Execute the update to insert the data into the database
-            pst.executeUpdate();
-            JOptionPane.showMessageDialog(this, "Registration Successful!", "Success", JOptionPane.INFORMATION_MESSAGE);
-            // Clear the fields after successful registration
-            fname1.setText("");
-            lname.setText("");
-            email.setText("");
-            contactff.setText("");
-            userff.setText("");
-            pass.setText("");
-
-        } catch (SQLException ex) {
-            Logger.getLogger(register.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        // Clear fields after registration
+        fname1.setText("");
+        lname.setText("");
+        email.setText("");
+        contactff.setText("");
+        userff.setText("");
+        pass.setText("");
+    } catch (SQLException ex) {
+        Logger.getLogger(register.class.getName()).log(Level.SEVERE, null, ex);
     }
+}
+
 
 
     }//GEN-LAST:event_registerActionPerformed

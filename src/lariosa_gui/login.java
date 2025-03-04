@@ -5,38 +5,26 @@ import admin.admin;
 import config.config;
 import java.awt.event.ActionListener;
 import javax.swing.Action;
-import dashboard.dashboard;
+import userdashboard.dashboard;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import supadmin.superadmin;
 
 public class login extends javax.swing.JFrame {
-
+config connect = new config();
     /**
      * Creates new form login
      */
     public login() {
         initComponents();
-    }
- public static boolean loginAcc(String username, String password) {
-            config connect = new config();
-            String query = "SELECT * FROM user WHERE username = ? AND password = ?";
-
-            try (PreparedStatement pstmt = connect.getConnection().prepareStatement(query)) {
-                pstmt.setString(1, username);
-                pstmt.setString(2, password);
-                ResultSet resultSet = pstmt.executeQuery();
-
-            return resultSet.next(); // Return true if a match is found
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-        return false;
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -145,28 +133,72 @@ public class login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginbuttonActionPerformed
- String user = username.getText();
-    String pass = new String(jPasswordField1.getPassword());
+    String user = username.getText();
+        String pass = new String(jPasswordField1.getPassword());
 
-    if (user.isEmpty() || pass.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Please enter username and password.", "Login Failed", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
+        if (user.isEmpty() || pass.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter username and password.", "Login Failed", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
 
-    if (user.equals("Admin") && pass.equals("Admin1234")) {
-        JOptionPane.showMessageDialog(this, "Admin Login Successful! Redirecting to Admin Dashboard...", "Success", JOptionPane.INFORMATION_MESSAGE);
-        this.dispose(); // Close the login window
-        new admin().setVisible(true); // Open the admin dashboard
-        return; // Stop further execution
-    }
+        if (user.equals("Admin") && pass.equals("Admin1234")) {
+            JOptionPane.showMessageDialog(this, "Super Admin Login Successful! Redirecting to Super Admin Dashboard...", "Success", JOptionPane.INFORMATION_MESSAGE);
+            this.dispose();
+            new superadmin().setVisible(true);
+            return;
+        }
 
-    if (!loginAcc(user, pass)) {
-        JOptionPane.showMessageDialog(this, "Invalid username or password.", "Login Failed", JOptionPane.ERROR_MESSAGE);
-    } else {
-        JOptionPane.showMessageDialog(this, "Login Successful! Redirecting to Dashboard...", "Success", JOptionPane.INFORMATION_MESSAGE);
-        this.dispose(); // Close the login window
-        new dashboard().setVisible(true); // Open the regular dashboard
+        String role = getUserRole(user, pass);
+
+        if (role == null) {
+            JOptionPane.showMessageDialog(this, "Invalid username or password.", "Login Failed", JOptionPane.ERROR_MESSAGE);
+        } else if (role.equals("Admin")) {
+            JOptionPane.showMessageDialog(this, "Admin Login Successful! Redirecting to Admin Dashboard...", "Success", JOptionPane.INFORMATION_MESSAGE);
+            this.dispose();
+            new admin().setVisible(true);
+        } else if (role.equals("User")) {
+            JOptionPane.showMessageDialog(this, "Login Successful! Redirecting to Dashboard...", "Success", JOptionPane.INFORMATION_MESSAGE);
+            this.dispose();
+            new dashboard().setVisible(true);
+        }
     }
+    
+    private String getUserRole(String username, String password) {
+        String role = null;
+        String sql = "SELECT role FROM user WHERE username = ? AND password = ?";
+        
+        try (Connection conn = connect.getConnection();
+             PreparedStatement pst = conn.prepareStatement(sql)) {
+            pst.setString(1, username);
+            pst.setString(2, password);
+            ResultSet rs = pst.executeQuery();
+            
+            if (rs.next()) {
+                role = rs.getString("role");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return role;
+    }
+    
+    public static boolean loginAcc(String username, String password) {
+        config connect = new config();
+        String query = "SELECT * FROM user WHERE username = ? AND password = ?";
+
+        try (Connection conn = connect.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(query)) {
+            pstmt.setString(1, username);
+            pstmt.setString(2, password);
+            ResultSet resultSet = pstmt.executeQuery();
+            return resultSet.next();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return false;
+    
+
     }//GEN-LAST:event_loginbuttonActionPerformed
 
     private void usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameActionPerformed
