@@ -159,7 +159,7 @@ config connect = new config();
         } else if (role.equals("User")) {
             JOptionPane.showMessageDialog(this, "Login Successful! Redirecting to Dashboard...", "Success", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
-            new dashboard().setVisible(true);
+             new dashboard().setVisible(true);
         }
     }
     

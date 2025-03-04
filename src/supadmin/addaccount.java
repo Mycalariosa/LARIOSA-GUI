@@ -42,6 +42,7 @@ public class addaccount extends javax.swing.JFrame {
         pass = new javax.swing.JPasswordField();
         lname = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -51,28 +52,28 @@ public class addaccount extends javax.swing.JFrame {
         setResizable(false);
         setSize(new java.awt.Dimension(800, 400));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(contactff, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 180, 205, 30));
+        getContentPane().add(contactff, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 190, 205, 30));
         getContentPane().add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 150, 205, 30));
-        getContentPane().add(userff, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 220, 205, 30));
+        getContentPane().add(userff, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 230, 205, 30));
 
         jLabel5.setText("contact");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 190, 60, 19));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 200, 60, 19));
         getContentPane().add(fname1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 70, 206, 30));
 
         jLabel9.setText("email");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 150, 60, 19));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 160, 60, 19));
 
         jLabel2.setText("firstname");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 90, -1, -1));
 
         jLabel10.setText("password");
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 250, 60, 19));
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 280, 60, 19));
 
         jLabel3.setText("lastname");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 120, 60, 19));
 
         jLabel11.setText("username");
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 220, 60, 19));
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 240, 60, 19));
 
         addaccount.setBackground(new java.awt.Color(0, 102, 153));
         addaccount.setText("Add Account");
@@ -82,12 +83,20 @@ public class addaccount extends javax.swing.JFrame {
                 addaccountActionPerformed(evt);
             }
         });
-        getContentPane().add(addaccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 300, 139, 36));
-        getContentPane().add(pass, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 260, 205, 31));
+        getContentPane().add(addaccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 310, 139, 36));
+        getContentPane().add(pass, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 270, 205, 31));
         getContentPane().add(lname, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 110, 205, 30));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/back.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 420, -1));
+
+        jButton1.setText("Back");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 10, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -170,6 +179,12 @@ try (PreparedStatement pst = connect.getConnection().prepareStatement(sql)) {
     
     }//GEN-LAST:event_addaccountActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       superadmin adminDash = new superadmin();
+    adminDash.setVisible(true);
+    this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
   
      
     public static void main(String args[]) {
@@ -209,6 +224,7 @@ try (PreparedStatement pst = connect.getConnection().prepareStatement(sql)) {
     private javax.swing.JTextField contactff;
     private javax.swing.JTextField email;
     private javax.swing.JTextField fname1;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
