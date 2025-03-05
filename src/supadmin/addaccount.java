@@ -48,6 +48,7 @@ public class addaccount extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(800, 400));
+        setMinimumSize(new java.awt.Dimension(800, 400));
         setPreferredSize(new java.awt.Dimension(800, 400));
         setResizable(false);
         setSize(new java.awt.Dimension(800, 400));
@@ -99,6 +100,7 @@ public class addaccount extends javax.swing.JFrame {
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 10, -1, -1));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void addaccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addaccountActionPerformed

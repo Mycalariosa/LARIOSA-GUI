@@ -46,6 +46,8 @@ public class dashboard extends javax.swing.JFrame {
         back = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(800, 400));
+        setResizable(false);
         setSize(new java.awt.Dimension(800, 400));
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
@@ -103,11 +105,16 @@ public class dashboard extends javax.swing.JFrame {
         );
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
-        jLabel3.setText("M&B Atelier");
+        jLabel3.setText("M&B ATELIER");
 
         name.setText("name");
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ppsp.png"))); // NOI18N
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel4MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -165,8 +172,9 @@ public class dashboard extends javax.swing.JFrame {
         jLabel5.setText("...");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, -10, 40, 50));
 
+        welcome.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         welcome.setForeground(new java.awt.Color(255, 255, 255));
-        welcome.setText("HELLO");
+        welcome.setText("HELLO USER ");
         jPanel1.add(welcome, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 30, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Times New Roman", 0, 10)); // NOI18N
@@ -200,6 +208,11 @@ public class dashboard extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+         new Profile().setVisible(true);
+         this.dispose();
+    }//GEN-LAST:event_jLabel4MouseClicked
 
  
     public static void main(String args[]) {

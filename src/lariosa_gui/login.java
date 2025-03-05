@@ -164,40 +164,43 @@ config connect = new config();
     }
     
     private String getUserRole(String username, String password) {
-        String role = null;
-        String sql = "SELECT role FROM user WHERE username = ? AND password = ?";
+    String role = null;
+    String sql = "SELECT role, status FROM user WHERE username = ? AND password = ?";
+    
+    try (Connection conn = connect.getConnection();
+         PreparedStatement pst = conn.prepareStatement(sql)) {
+        pst.setString(1, username);
+        pst.setString(2, password);
+        ResultSet rs = pst.executeQuery();
         
-        try (Connection conn = connect.getConnection();
-             PreparedStatement pst = conn.prepareStatement(sql)) {
-            pst.setString(1, username);
-            pst.setString(2, password);
-            ResultSet rs = pst.executeQuery();
-            
-            if (rs.next()) {
+        if (rs.next()) {
+            String status = rs.getString("status");
+            if (!status.equalsIgnoreCase("Pending")) { // Prevent login if status is "Pending"
                 role = rs.getString("role");
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        return role;
+    } catch (SQLException ex) {
+        Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
     }
     
-    public static boolean loginAcc(String username, String password) {
-        config connect = new config();
-        String query = "SELECT * FROM user WHERE username = ? AND password = ?";
+    return role;
+}
 
-        try (Connection conn = connect.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(query)) {
-            pstmt.setString(1, username);
-            pstmt.setString(2, password);
-            ResultSet resultSet = pstmt.executeQuery();
-            return resultSet.next();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-        return false;
-    
+  public static boolean loginAcc(String username, String password) {
+    config connect = new config();
+    String query = "SELECT * FROM user WHERE username = ? AND password = ? AND status != 'Pending'";
+
+    try (Connection conn = connect.getConnection();
+         PreparedStatement pstmt = conn.prepareStatement(query)) {
+        pstmt.setString(1, username);
+        pstmt.setString(2, password);
+        ResultSet resultSet = pstmt.executeQuery();
+        return resultSet.next();
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    }
+    return false;
+
 
     }//GEN-LAST:event_loginbuttonActionPerformed
 

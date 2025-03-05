@@ -289,76 +289,80 @@ public class register extends javax.swing.JFrame {
     }//GEN-LAST:event_fname1ActionPerformed
 
     private void registerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerActionPerformed
-    boolean isValid = true;
-config connect = new config();
+        boolean isValid = true;
+    config connect = new config();
 
-// Getting user inputs
-String firstname = fname1.getText().trim();
-String lastname = lname.getText().trim();
-String email1 = email.getText().trim();
-String contact = contactff.getText().trim();
-String username = userff.getText().trim();
-String password = pass.getText().trim();
-String status = "Pending"; // Automatically set to Pending
-String role = "User";    // Automatically set to User
+    // Getting user inputs
+    String firstname = fname1.getText().trim();
+    String lastname = lname.getText().trim();
+    String email1 = email.getText().trim();
+    String contact = contactff.getText().trim();
+    String username = userff.getText().trim();
+    String password = pass.getText().trim();
+    String status = "Pending"; // Automatically set to Pending
+    String role = "User";    // Automatically set to User
 
-// Validate if fields are empty
-if (isAllFieldsEmpty()) {
-    JOptionPane.showMessageDialog(this, "Please fill out the registration form", "Empty Form", JOptionPane.ERROR_MESSAGE);
-    return;
-}
+    // Validate if fields are empty
+    if (isAllFieldsEmpty()) {
+        JOptionPane.showMessageDialog(this, "Please fill out the registration form", "Empty Form", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
 
-// Validate First Name
-if (firstname.isEmpty()) {
-    JOptionPane.showMessageDialog(this, "First Name cannot be empty", "Validation Error", JOptionPane.ERROR_MESSAGE);
-    isValid = false;
-}
+    // Validate First Name
+    if (firstname.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "First Name cannot be empty", "Validation Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
 
-// Validate Last Name
-if (lastname.isEmpty()) {
-    JOptionPane.showMessageDialog(this, "Last Name cannot be empty", "Validation Error", JOptionPane.ERROR_MESSAGE);
-    isValid = false;
-}
+    // Validate Last Name
+    if (lastname.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Last Name cannot be empty", "Validation Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
 
-// Validate Email
-if (email1.isEmpty()) {
-    JOptionPane.showMessageDialog(this, "Email cannot be empty", "Validation Error", JOptionPane.ERROR_MESSAGE);
-    isValid = false;
-} else if (!isValidEmail(email1)) {
-    JOptionPane.showMessageDialog(this, "Invalid email format", "Validation Error", JOptionPane.ERROR_MESSAGE);
-    isValid = false;
-}
+    // Validate Email
+    if (email1.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Email cannot be empty", "Validation Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+    if (!isValidEmail(email1)) {
+        JOptionPane.showMessageDialog(this, "Invalid email format", "Validation Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
 
-// Validate Contact Number
-if (contact.isEmpty()) {
-    JOptionPane.showMessageDialog(this, "Contact Number cannot be empty", "Validation Error", JOptionPane.ERROR_MESSAGE);
-    isValid = false;
-} else if (!contact.matches("\\d+")) {
-    JOptionPane.showMessageDialog(this, "Contact Number must contain only numbers", "Validation Error", JOptionPane.ERROR_MESSAGE);
-    isValid = false;
-}
+    // Validate Contact Number
+    if (contact.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Contact Number cannot be empty", "Validation Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+    if (!contact.matches("\\d+")) {
+        JOptionPane.showMessageDialog(this, "Contact Number must contain only numbers", "Validation Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
 
-// Validate Username
-if (username.isEmpty()) {
-    JOptionPane.showMessageDialog(this, "Username cannot be empty", "Validation Error", JOptionPane.ERROR_MESSAGE);
-    isValid = false;
-} else if (isUsernameTaken(username)) {
-    JOptionPane.showMessageDialog(this, "Username is already taken", "Validation Error", JOptionPane.ERROR_MESSAGE);
-    isValid = false;
-}
+    // Validate Username
+    if (username.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Username cannot be empty", "Validation Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+    if (isUsernameTaken(username)) {
+        JOptionPane.showMessageDialog(this, "Username is already taken", "Validation Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
 
-// Validate Password
-if (password.isEmpty()) {
-    JOptionPane.showMessageDialog(this, "Password cannot be empty", "Validation Error", JOptionPane.ERROR_MESSAGE);
-    isValid = false;
-} else if (password.length() < 8) {
-    JOptionPane.showMessageDialog(this, "Password must be at least 8 characters long", "Validation Error", JOptionPane.ERROR_MESSAGE);
-    isValid = false;
-}
+    // Validate Password
+    if (password.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Password cannot be empty", "Validation Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+    if (password.length() < 8) {
+        JOptionPane.showMessageDialog(this, "Password must be at least 8 characters long", "Validation Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
 
-if (isValid) {
+    // If all validations pass, proceed with registration
     JOptionPane.showMessageDialog(this, "Registration Successful!", "Success", JOptionPane.INFORMATION_MESSAGE);
-    
+
     // Prepare the SQL query
     String sql = "INSERT INTO user (fname, lname, email, contact, username, password, status, role) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
@@ -387,7 +391,8 @@ if (isValid) {
     } catch (SQLException ex) {
         Logger.getLogger(register.class.getName()).log(Level.SEVERE, null, ex);
     }
-}
+
+
 
 
 
