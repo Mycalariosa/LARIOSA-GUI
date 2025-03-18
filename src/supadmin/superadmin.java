@@ -6,9 +6,12 @@
 package supadmin;
 
 import config.config;
+import static java.lang.System.exit;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import lariosa_gui.login;
 
 /**
  *
@@ -209,7 +212,8 @@ public class superadmin extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
-       new addaccount().setVisible(true);
+      
+      
     }//GEN-LAST:event_addActionPerformed
 
     private void UpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateActionPerformed
